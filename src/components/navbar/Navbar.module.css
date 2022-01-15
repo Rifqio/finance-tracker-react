@@ -1,0 +1,33 @@
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    padding: 20px 10px;
+    box-sizing: border-box; 
+    border-bottom: 1px solid rgb(218, 218, 218);
+
+}
+
+.navbar ul {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1200px;
+    align-items: center;
+}
+
+.title {
+    margin-right: auto;
+    letter-spacing: 1px;
+}
+
+.navbar button, .navbar a {
+    margin-left: 16px;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+nav li a.active {
+    color: #0078ff;
+    text-decoration: none;
+}
