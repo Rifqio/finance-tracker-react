@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { projectAuth } from "../firebase/Config"
+import { useAuthContext } from './useAuthContext'
 
 export const useRegister = () => {
+  const [isCancel, setIsCancel] = useState(false)
   const [error, setError] = useState(null)
   const [pending, setPending] = useState(false)
+  const { dispatch } = useAuthContext()
 
   const register = async (email, password, username) => {
     setError(null)
@@ -12,7 +15,6 @@ export const useRegister = () => {
     try {
       //Signup
       const res = await projectAuth.createUserWithEmailAndPassword( email, password )
-      console.log(res.user)
 
       if (!res) {
         throw new Error("Registration error")
@@ -21,15 +23,25 @@ export const useRegister = () => {
       //Add username
       await res.user.updateProfile({ displayName: username })
 
-      setPending(false)
-      setError(null)
+      //Dispatch login action
+      dispatch({ type: 'LOGIN', payload: res.user })
 
-    } catch (err) {
-      console.log(err.message)
-      setError(err.message)
-      setPending(false)
+      if(!isCancel){
+        setPending(false)
+        setError(null)
+      }
+    } 
+    catch (err) {
+      if(!isCancel){
+        console.log(err.message)
+        setError(err.message)
+        setPending(false)
+      }
     }
   }
+  useEffect(() => {
+    return () => setIsCancel(true)
+  }, []) 
 
   return { error, pending, register }
 }
