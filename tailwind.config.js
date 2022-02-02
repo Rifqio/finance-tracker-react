@@ -9,7 +9,8 @@ module.exports = {
         background: '#efe8e2',
         lightText: '#979cb9',
         darkText: '#23202b',
-        pinkBrand: '#eec3a3'
+        pinkBrand: '#eec3a3',
+        greenBrand: '#244818'
       },
     },
   },

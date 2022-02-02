@@ -1,8 +1,10 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import Nav from "../../components/navbarHome/Nav";
-import Main from "./section/Main";
-import Reviews from "./section/Reviews";
+import Main from "./section/Main/Main";
+import Pricing from "./section/Pricing/Pricing";
+import Reviews from "./section/Reviews/Reviews";
+import { ReviewsData } from "./section/Reviews/ReviewsData";
 const Home = () => {
    
   return (
@@ -12,7 +14,8 @@ const Home = () => {
       </Helmet>
         <Nav />
         <Main />
-        <Reviews />
+        <Reviews items={ReviewsData} />
+        <Pricing />
     </HelmetProvider>
     
   );

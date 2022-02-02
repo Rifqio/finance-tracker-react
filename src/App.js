@@ -6,6 +6,7 @@ import Login from './pages/auth/login/Login'
 import Register from './pages/auth/register/Register'
 import Navbar from './components/navbar/Navbar'
 
+
 function App() {
   const { auth, user } = useAuthContext()
   return (
@@ -15,16 +16,20 @@ function App() {
         {/* <Navbar /> */}
         <Switch>
           <Route exact path="/">
+            
             {!user && <Home />}
-            {user && <Dashboard />}
+            {user && (<><Navbar /><Dashboard /></>)}
           </Route>
 
           <Route path="/login">
+          <Navbar />
             {user && <Redirect to="/" />}
             {!user && <Login />}
           </Route>
 
+          
           <Route path="/register">
+          <Navbar />
             {user && <Redirect to="/" />}
             {!user && <Register />}
           </Route>

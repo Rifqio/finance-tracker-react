@@ -1,9 +1,8 @@
-import styles from './Register.module.css'
 import {
     FormControl,
-    FormLabel,
+    label,
     FormErrorMessage,
-    FormHelperText,
+    span,
     Input,
     Button,
   } from "@chakra-ui/react";
@@ -27,26 +26,26 @@ function Register() {
             <Helmet>
                 <title>Register</title>
             </Helmet>
-            <form onSubmit={submitForm} className={styles["register-form"]}>
-                <h1 className="text-center text-lg font-semibold">Register To Start Saving!</h1>
+            <form onSubmit={submitForm} className="font-sans pt-10">
+                <h1 className="text-center text-2xl font-semibold">Register To Start Saving!</h1>
                 {error && <p className="text-red-500 w-full">{error}</p>}
-                <FormControl>
-                    <FormLabel>Email address</FormLabel>
-                    <Input type="email" value={email} id="email" onChange={(e) => setEmail(e.target.value)} />
-                    <FormHelperText>We'll never share your email with anyone else.</FormHelperText>
+                <div className="flex flex-col max-w-xl m-auto pt-5">
+                    <label>Email address</label>
+                    <input type="email"  className="border-2 h-10 border-lightText/50 rounded-md pl-2" value={email} id="email" onChange={(e) => setEmail(e.target.value)} />
+                    <span className="mb-6 text-sm text-gray-500 tracking-tight">We'll never share your email with anyone else.</span>
 
-                    <FormLabel>Username</FormLabel>
-                    <Input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-                    <FormHelperText>{username}</FormHelperText>
+                    <label>Name</label>
+                    <input type="text" className="border-2 h-10 border-lightText/50 rounded-md pl-2 mb-6" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <span>{username}</span>
 
-                    <FormLabel>Password</FormLabel>
-                    <Input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <label>Password</label>
+                    <input type="password" className="border-2 h-10 border-lightText/50 rounded-md pl-2 mb-6" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
                     <div className="flex justify-end items-center">
                         {!pending && <Button className="mt-4 text-center" type="submit" colorScheme="whatsapp" variant="outline">Register</Button>}
                         {pending && <Button className="mt-4 block" colorScheme="whatsapp" variant="outline" isLoading>Loading</Button>}
                     </div>
-                </FormControl>
+                </div>
             </form>
         </HelmetProvider>
 
